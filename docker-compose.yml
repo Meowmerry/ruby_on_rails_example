@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  web:
+    build: .
+    command: rails server -b 0.0.0.0
+    volumes:
+      - .:/my_api_project
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ruby_api_example
+    ports:
+      - "5432:5432"
